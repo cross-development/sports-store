@@ -1,20 +1,24 @@
 // Core
 import { Component } from '@angular/core';
 // Models
+import { Cart } from '../model/cart.model';
 import { Product } from '../model/product.model';
 import { ProductRepository } from '../model/product.repository';
 
 @Component({
   selector: 'app-store',
   moduleId: module.id,
-  templateUrl: './store.component.html',
+  templateUrl: 'store.component.html',
 })
 export class StoreComponent {
   public selectedCategory: string | null = null;
   public productPerPage: number = 4;
   public selectedPage: number = 1;
 
-  constructor(private readonly productRepository: ProductRepository) {}
+  constructor(
+    private readonly cart: Cart,
+    private readonly productRepository: ProductRepository,
+  ) {}
 
   public get products(): Product[] {
     const pageIndex = (this.selectedPage - 1) * this.productPerPage;
@@ -48,5 +52,9 @@ export class StoreComponent {
       this.productRepository.getProducts(this.selectedCategory).length /
         this.productPerPage,
     );
+  }
+
+  public addProductToCart(product: Product): void {
+    this.cart.addLine(product);
   }
 }

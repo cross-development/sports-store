@@ -20,7 +20,7 @@ export class CounterDirective implements OnChanges {
     private readonly template: TemplateRef<Object>,
   ) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
+  public ngOnChanges(changes: SimpleChanges): void {
     this.container.clear();
 
     for (let i = 0; i < this.counter; i++) {
