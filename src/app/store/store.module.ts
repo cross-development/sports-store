@@ -6,10 +6,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { StoreComponent } from './store.component';
 // Modules
 import { ModelModule } from '../model/model.module';
+// Directives
+import { CounterDirective } from './counter.directive';
 
 @NgModule({
   imports: [ModelModule, BrowserModule, FormsModule],
+  declarations: [StoreComponent, CounterDirective],
   exports: [StoreComponent],
-  declarations: [StoreComponent],
 })
 export class StoreModule {}

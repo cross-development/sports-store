@@ -43,14 +43,10 @@ export class StoreComponent {
     this.changePage(1);
   }
 
-  public get pageNumbers(): number[] {
-    return Array(
-      Math.ceil(
-        this.productRepository.getProducts(this.selectedCategory).length /
-          this.productPerPage,
-      ),
-    )
-      .fill(0)
-      .map((_, i) => i + 1);
+  public get pageCount(): number {
+    return Math.ceil(
+      this.productRepository.getProducts(this.selectedCategory).length /
+        this.productPerPage,
+    );
   }
 }
