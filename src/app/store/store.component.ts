@@ -1,5 +1,6 @@
 // Core
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 // Models
 import { Cart } from '../model/cart.model';
 import { Product } from '../model/product.model';
@@ -17,6 +18,7 @@ export class StoreComponent {
 
   constructor(
     private readonly cart: Cart,
+    private readonly router: Router,
     private readonly productRepository: ProductRepository,
   ) {}
 
@@ -56,5 +58,6 @@ export class StoreComponent {
 
   public addProductToCart(product: Product): void {
     this.cart.addLine(product);
+    this.router.navigateByUrl('/cart');
   }
 }
