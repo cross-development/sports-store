@@ -21,12 +21,15 @@ export class Cart {
     this.recalculate();
   }
 
-  public updateQuantity(product: Product, quantity: number): void {
+  public updateQuantity(event: Event, product: Product): void {
     const line = this.lines.find(line => line.product.id === product.id);
 
     if (line) {
+      const quantity = (event.target as HTMLInputElement).value;
       line.quantity = Number(quantity);
     }
+
+    this.recalculate();
   }
 
   public removeLine(id: number): void {

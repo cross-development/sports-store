@@ -1,5 +1,7 @@
 // Core
 import { Component } from '@angular/core';
+// Models
+import { Cart } from '../model/cart.model';
 
 @Component({
   selector: 'app-cart-detail',
@@ -7,5 +9,5 @@ import { Component } from '@angular/core';
   templateUrl: 'cartDetail.component.html',
 })
 export class CartDetailComponent {
-  constructor() {}
+  constructor(public readonly cart: Cart) {}
 }

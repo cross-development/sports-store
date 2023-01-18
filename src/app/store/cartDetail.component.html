@@ -1,3 +1,82 @@
-<div>
-  <h3 class="bg-info p-1">Cart Detail Component</h3>
+<div class="navbar navbar-dark bg-dark p-3">
+  <a class="navbar-brand">SPORTS STORE</a>
+</div>
+
+<div class="m-3">
+  <h2 class="text-xl-center">Your Cart</h2>
+
+  <table class="table table-bordered table-striped p-1">
+    <thead>
+      <tr>
+        <th>Quantity</th>
+        <th>Product</th>
+        <th class="text-xl-end">Price</th>
+        <th class="text-xl-end">Subtotal</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngIf="!cart.lines.length">
+        <td colspan="4" class="text-xl-center">Your cart is empty</td>
+      </tr>
+
+      <tr *ngFor="let line of cart.lines">
+        <td>{{ line.product.name }}</td>
+
+        <td>
+          <input
+            type="number"
+            [value]="line.quantity"
+            (change)="cart.updateQuantity($event, line.product)"
+            style="width: 5em"
+            class="form-control-sm"
+          />
+        </td>
+
+        <td class="text-xl-end">
+          {{ line.product.price | currency : 'USD' : true : '2.2-2' }}
+        </td>
+
+        <td class="text-xl-end">
+          {{ line.lineTotal | currency : 'USD' : true : '2.2-2' }}
+        </td>
+
+        <td class="text-xl-end">
+          <button
+            (click)="cart.removeLine(line.product.id)"
+            class="btn btn-sm btn-danger"
+          >
+            Remove
+          </button>
+        </td>
+      </tr>
+    </tbody>
+
+    <tfoot>
+      <tr>
+        <td colspan="3" class="text-xl-end">Total:</td>
+
+        <td class="text-xl-end">
+          {{ cart.cartPrice | currency : 'USD' : true : '2.2-2' }}
+        </td>
+
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<div class="text-xl-center">
+  <button routerLink="/store" class="btn btn-primary me-2">
+    Continue Shopping
+  </button>
+
+  <button
+    routerLink="/checkout"
+    [disabled]="!cart.lines.length"
+    class="btn btn-secondary"
+  >
+    Checkout
+  </button>
 </div>
