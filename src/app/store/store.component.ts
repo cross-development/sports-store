@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 // Models
 import { Cart } from '../model/cart.model';
 import { Product } from '../model/product.model';
+// Repositories
 import { ProductRepository } from '../model/product.repository';
 
 @Component({

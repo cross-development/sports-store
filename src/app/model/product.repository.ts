@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 // Models
 import { Product } from './product.model';
+// Data Sources
 import { StaticDataSource } from './static.datasource';
 
 @Injectable()
